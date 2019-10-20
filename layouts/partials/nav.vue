@@ -1,6 +1,6 @@
 <template lang="pug">
 header
-  nuxt-link.logo(to="/") Nuxty
+  nuxt-link.logo.title(to="/") CandyBar
   nav
     ul.nav
       li
@@ -8,7 +8,7 @@ header
       li
         nuxt-link.nav__link(to="about") About
       li
-        nuxt-link.nav__link(to="service") Services
+        nuxt-link.nav__link(to="boutique") Boutique
       li
         nuxt-link.nav__link(to="contact") Contact
 </template>
@@ -21,31 +21,32 @@ export default {
 
 <style lang="scss">
 header {
-  background: rgb(0, 219, 146);
   display: grid;
   grid-template-columns: repeat(2,auto);
+  border-bottom: 1px solid rgba(0,0,0,0.1);
 }
+
+.logo.title {
+  font-size: 1.8em;
+}
+
 .logo, li a {
   padding: 1em 2em;
   display: block;
   text-transform: uppercase;
   text-decoration: none;
   font-weight: bold;
-  color: white;
+  color: #000;
   font-size: .9em;
 }
-nav {
-  justify-self: right;
-}
-ul {
-  list-style-type: none;
-}
-li {
-  display: inline;
-}
+
+nav {justify-self: right;}
+ul {list-style-type: none;}
+li {display: inline;}
+
 li a {
+  font-family: 'Indie Flower';
   padding: 1em 2em;
   display: inline-block;
-  background: rgba(0,0,0,0.1);
 }
 </style>
