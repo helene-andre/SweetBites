@@ -6,11 +6,11 @@ header
       li
         nuxt-link.nav__link(to="/") Home
       li
-        nuxt-link.nav__link(to="about") About
+        nuxt-link.nav__link(to="/about") About
       li
-        nuxt-link.nav__link(to="boutique") Boutique
+        nuxt-link.nav__link(to="/boutique") Boutique
       li
-        nuxt-link.nav__link(to="contact") Contact
+        nuxt-link.nav__link(to="/contact") Contact
 </template>
 
 <script>

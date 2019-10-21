@@ -1,47 +1,36 @@
 <template lang="pug">
 section.container
   h1 boutique
+
   div.candy-wrapper
-    .candy(v-for="candy in candies")
-      img.candy__picture(:src="require(`../assets/images/${candy.src}.jpg`)")
-      //- div {{ candy.name }}
+    NuxtLink.candy(v-for="candy in candies" :key="candy.id" :to="`product/${candy.id}`")
+      img.candy__picture(:src="`/products/${candy.src}.jpg`")
+      .candy__name {{ candy.name }}
+
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
+  head () {
+    return {
+      title: 'Boutique',
+      meta: [{ name: 'Boutique', content: 'This the boutique' }]
+    }
+  },
+
   data: () => ({
-    candies: [
-      { name: 'test', src: 'candy-1' },
-      { name: 'test', src: 'candy-2' },
-      { name: 'test', src: 'candy-3' },
-      { name: 'test', src: 'candy-4' },
-      { name: 'test', src: 'candy-5' },
-      { name: 'test', src: 'candy-6' },
-      { name: 'test', src: 'candy-7' },
-      { name: 'test', src: 'candy-8' },
-      { name: 'test', src: 'candy-9' },
-      { name: 'test', src: 'candy-10' },
-      { name: 'test', src: 'candy-11' },
-      { name: 'test', src: 'candy-12' },
-      { name: 'test', src: 'candy-13' },
-      { name: 'test', src: 'candy-14' },
-      { name: 'test', src: 'candy-15' },
-      { name: 'test', src: 'candy-16' },
-      { name: 'test', src: 'candy-17' },
-      { name: 'test', src: 'candy-18' },
-      { name: 'test', src: 'candy-19' },
-      { name: 'test', src: 'candy-20' },
-      { name: 'test', src: 'candy-21' },
-      { name: 'test', src: 'candy-22' },
-      { name: 'test', src: 'candy-23' },
-      { name: 'test', src: 'candy-24' },
-      { name: 'test', src: 'candy-25' },
-      { name: 'test', src: 'candy-26' },
-      { name: 'test', src: 'candy-27' },
-      { name: 'test', src: 'candy-28' }
-    ]
-  })
+  }),
+
+  computed: {
+    ...mapState(['storedata']),
+    candies () {
+      return this.storedata
+    }
+  }
 }
+
 </script>
 
 <style lang="scss">
@@ -55,10 +44,36 @@ export default {
 .candy {
   width: 200px;
   height: 200px;
-  overflow: hidden;
+  padding: 3%;
+  transition: 0.3s ease-in-out;
+  &:hover {
+    opacity: 0.6;
+  }
+  &:hover &__name {
+    background-color: rgba(255, 255, 255, 0.6);
+    opacity: 1;
+  }
+
   &__picture {
-    height: 94%;
-    padding: 3%;
+    height: 100%;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: block;
+    transition: 0.3s ease-in-out;
+  }
+
+  &__name {
+    position: relative;
+    top: -50%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    z-index: 1;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0);
+    opacity: 0;
+    transition: 0.3s ease-in-out;
   }
 }
 </style>

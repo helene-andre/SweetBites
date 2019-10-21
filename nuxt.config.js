@@ -1,4 +1,12 @@
 
+import candies from './static/storedata.json'
+
+let dynamicRoutes = () => {
+  return new Promise(resolve => {
+    resolve(candies.map(candy => `product/${candy.id}`))
+  })
+}
+
 export default {
   mode: 'universal',
   /*
@@ -60,5 +68,8 @@ export default {
     */
     extend (config, ctx) {
     }
+  },
+  generate: {
+    routes: dynamicRoutes
   }
 }
