@@ -1,5 +1,5 @@
 <template lang="pug">
-header
+header.header
   nuxt-link.logo.title(to="/") CandyBar
   nav
     ul.nav
@@ -11,26 +11,30 @@ header
         nuxt-link.nav__link(to="/boutique") Boutique
       li
         nuxt-link.nav__link(to="/contact") Contact
+      li.cart-wrapper
+        span.icon.i-add-to-cart.cart__icon
+        cart
+
 </template>
 
 <script>
-export default {
+import Cart from '@/components/cart'
 
+export default {
+  components: { Cart }
 }
 </script>
 
 <style lang="scss">
-header {
+header.header {
   display: grid;
   grid-template-columns: repeat(2,auto);
   border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
-.logo.title {
-  font-size: 1.8em;
-}
+.logo.title {font-size: 1.8em;}
 
-.logo, li a {
+.logo, li a, .nav > li {
   padding: 1em 2em;
   display: block;
   text-transform: uppercase;
@@ -42,11 +46,13 @@ header {
 
 nav {justify-self: right;}
 ul {list-style-type: none;}
-li {display: inline;}
+.nav > li {display: inline;}
 
-li a {
+li a, li span {
   font-family: 'Indie Flower';
   padding: 1em 2em;
   display: inline-block;
 }
+
+.cart__icon {font-size: 1.5em;}
 </style>
