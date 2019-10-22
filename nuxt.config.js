@@ -1,5 +1,5 @@
 
-import candies from './static/storedata.json'
+import candies from './static/candies.json'
 
 let dynamicRoutes = () => {
   return new Promise(resolve => {
@@ -31,7 +31,8 @@ export default {
   ** Global CSS
   */
   css: [
-    '@/assets/css/main.scss'
+    '@/assets/css/main.scss',
+    '@/assets/css/typography.scss'
   ],
   /*
   ** Plugins to load before mounting the App
@@ -63,6 +64,7 @@ export default {
   ** Build configuration
   */
   build: {
+    publicPath: 'http://localhost/_helene/cup-or-mug/dist/',
     /*
     ** You can extend webpack config here
     */

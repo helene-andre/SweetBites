@@ -5,10 +5,6 @@ body {
 	background-color: #fff;
 }
 
-section {
-	padding: 5em;
-}
-
 h1 {
 	font-family: 'Indie Flower';
 	font-size: 2em;
@@ -22,6 +18,10 @@ h2 {
 	font-size: 1.5em;
 	color: #f9a8b4;
 	text-transform: uppercase;
+}
+
+.container {
+	padding: 2em 10% 0 10%;
 }
 
 .subheading {
@@ -44,6 +44,14 @@ p {
 	line-height: 1.4em;
 }
 
+button {
+	border-radius: 4px;
+  font-size: 1em;
+  font-family: 'Indie Flower';
+  color: #fff;
+	background-color: #f9a8b4;
+	padding: 2px 2px 0 2px;
+}
 
 .page-enter-active {
 	animation: bounce-in .8s;
