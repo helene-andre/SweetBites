@@ -1,33 +1,48 @@
-import Vue from 'vue'
-import candies from '~/static/candies.json'
+import products from '~/static/products.json'
 
-const candiesMap = candies.reduce((acc, item, i) => { acc[item.id] = i; return acc }, {})
+const productsMap = products.reduce((acc, item, i) => { acc[item.slug] = i; return acc }, {})
 
 export const state = () => ({
-  candies,
-  candiesMap,
+  products,
+  productsMap,
   cart: []
 })
 
 export const mutations = {
   initCart: (state) => {
     const sessionStorageCart = (sessionStorage.cart && JSON.parse(sessionStorage.cart)) || []
-    sessionStorageCart.forEach((itemId) => {
-      const candy = { ...candies[candiesMap[itemId]], quantity: 1 }
+    sessionStorageCart.forEach((itemSlug) => {
+      const product = { ...products[productsMap[itemSlug]], quantity: 1 }
 
-      const itemInCartIndex = state.cart.findIndex(item => item.id === itemId)
+      const itemInCartIndex = state.cart.findIndex(item => item.slug === itemSlug)
+
       if (itemInCartIndex > -1) state.cart[itemInCartIndex].quantity++
-      else state.cart.push(candy)
+      else state.cart.push(product)
     })
   },
 
-  addToCart: (state, candy) => {
-    const itemInCartIndex = state.cart.findIndex(item => item.id === candy.id)
+  removeFromCart: (state, product) => {
+    const itemInCartIndex = state.cart.findIndex(item => item.slug === product.slug)
+    if (product.quantity > 1) state.cart[itemInCartIndex].quantity--
+    else state.cart = state.cart.filter(item => item.slug !== product.slug)
+
+    let sessionStorageCart = (sessionStorage.cart && JSON.parse(sessionStorage.cart)) || []
+    sessionStorageCart = []
+    state.cart.forEach(function (item) {
+      for (let i = 0; i < item.quantity; i++) sessionStorageCart.push(item.slug)
+    })
+
+    sessionStorage.cart = JSON.stringify(sessionStorageCart)
+  },
+
+  addToCart: (state, product) => {
+    const itemInCartIndex = state.cart.findIndex(item => item.slug === product.slug)
     if (itemInCartIndex > -1) state.cart[itemInCartIndex].quantity++
-    else state.cart.push({ ...candy, quantity: 1 })
+    else state.cart.push({ ...product, quantity: 1 })
 
     const sessionStorageCart = (sessionStorage.cart && JSON.parse(sessionStorage.cart)) || []
-    sessionStorageCart.push(candy.id)
+    sessionStorageCart.push(product.slug)
+
     sessionStorage.cart = JSON.stringify(sessionStorageCart)
   }
 }

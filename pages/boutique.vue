@@ -2,17 +2,12 @@
 section.container
   h1 boutique
 
-  //- div Test Cart
-  //-   div(v-for="item in cartItems" :key="item.id")
-  //-     div item = {{ item.name }}
-  //-       span quantity = {{ item.quantityTest }}
-
   div.candy-wrapper
-    .candy(v-for="candy in candies" :key="candy.id")
-      NuxtLink.candy__link(:to="`product/${candy.id}`")
-        .candy__name {{ candy.name }}
-        img.candy__picture(:src="getImage(`products/${candy.src}.jpg`)")
-      button.candy__add-to-cart(@click="addToCart(candy)") Add to Cart
+    .candy(v-for="product in products" :key="product.slug")
+      NuxtLink.candy__link(:to="`product/${product.slug}`")
+        .candy__name {{ product.name }}
+        img.candy__picture(:src="getImage(`products/${product.src}.jpg`)")
+      button.candy__add-to-cart(@click="addToCart(product)") Add to Cart
 
 </template>
 
@@ -29,13 +24,13 @@ export default {
 
   methods: {
     getImage: image => require(`~/assets/images/${image}`),
-    addToCart (candy) {
-      this.$store.commit('addToCart', candy)
+    addToCart (product) {
+      this.$store.commit('addToCart', product)
     }
   },
 
   computed: {
-    ...mapState(['candies'])
+    ...mapState(['products'])
   }
 }
 
@@ -108,7 +103,7 @@ export default {
     background-color: #f9a8b4;
     padding: 2px 2px 0 2px;
     opacity: 0.8;
-    transform: 0.3s ease-in-out;
+    transition: 0.3s ease-in-out;
 
     &:hover {opacity: 1;}
   }

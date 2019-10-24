@@ -2,34 +2,33 @@
 section.container.product
   //- Image.
   .product__image
-    img(v-for="candy in product" :src="`/products/${candy.src}.jpg`")
+    img(:src="getImage(`products/${product.src}.jpg`)")
   .product__text.pl-5
     //- Name.
-    h1(v-for="candy in product") {{ candy.name }}
+    h1 {{ product.name }}
 
     //- Rating.
     v-rating(
-      v-for="candy in product"
       v-model="rating"
       half-increments
       hover
-      @input="updateRating")
+      @input="")
 
     //- Description.
     h2 Description
-    div(v-for="candy in product") {{ candy.description }}
+    div {{ product.description }}
 
     //- Weight.
     h2 Weight
-    div(v-for="candy in product") {{ candy.weight }} grams.
+    div {{ product.weight }} grams.
 
     //- Price.
     h2 Price
-    div(v-for="candy in product") {{ candy.price }} $ / Kg.
+    div {{ product.price }} $/Kg.
 
     //- Add to cart button.
-    div.product__add-cart
-      v-btn(@click="addToCart") Add to Cart
+    div
+      button.product__add-to-cart(@click="addToCart(product)") Add to Cart
 
 </template>
 
@@ -39,24 +38,24 @@ import { mapState } from 'vuex'
 export default {
   data () {
     return {
-      id: this.$route.params.id,
-      tempCart: []
+      slug: this.$route.params.slug,
     }
   },
 
   computed: {
-    ...mapState(['storedata']),
+    ...mapState(['products']),
     product () {
-      return this.storedata.filter(candy => candy.id === this.id)
+      return this.products.filter(product => product.slug === this.slug)[0]
     },
 
     rating () {
-      const test = this.storedata.filter(candy => candy.id === this.id)
+      const test = this.products.filter(product => product.slug === this.slug)
       return test[0].rating
     }
   },
 
   methods: {
+    getImage: image => require(`~/assets/images/${image}`),
     updateRating (newRating) {
       const numberOfVotes = this.product[0].votes
       const newMeanRating = (newRating + (this.rating * numberOfVotes)) / (numberOfVotes + 1)
@@ -64,12 +63,8 @@ export default {
       // this.incrementRating(this.product)
     },
 
-    // incrementRating (state) {
-    //   this.storedata.push(state)
-    // },
-
-    addToCart () {
-      // Do somthing.
+    addToCart (product) {
+      this.$store.commit('addToCart', product)
     }
   }
 }
@@ -79,7 +74,7 @@ export default {
 <style lang="scss">
 .product {
   display: flex;
-  padding: 4em 10% 0 10%;
+  padding: 4em 10% 4em 10%;
 
   &__image {
     display: block;
@@ -101,6 +96,18 @@ export default {
 
     & div {padding-bottom: 1em;}
     &__add-cart {padding-top: 1em;}
+  }
+
+  &__add-to-cart {
+    font-size: 1em;
+    font-family: "Indie Flower";
+    color: #fff;
+    background-color: #f9a8b4;
+    padding: 2px 2px 0 2px;
+    opacity: 0.8;
+    transition: 0.3s ease-in-out;
+
+    &:hover {opacity: 1;}
   }
 }
 

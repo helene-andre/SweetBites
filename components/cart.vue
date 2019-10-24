@@ -2,11 +2,13 @@
 .cart
   ul.cart__list(v-if="cart.length")
     li(v-for="(item, i) in cart" :key="i").cart__item
-      | {{ getCandy(item.id).name }}
+      | {{ item.name }}
       | x{{ item.quantity }}
+      span(@click="addToCart(item)") +
+      span(@click="removeFromCart(item)") -
   p(v-else) There's nothing in your cart yet.
 
-  nuxt-link.nav__link(to="/cart") See your cart
+  nuxt-link.nav__link(v-if="isNavBar" to="/cart") See your cart
 
 </template>
 
@@ -14,9 +16,15 @@
 import { mapState } from 'vuex'
 
 export default {
+  props: {
+    isNavBar: { type: Boolean }
+  },
   methods: {
-    getCandy (id) {
-      return this.candies[this.candiesMap[id]] || {}
+    addToCart (product) {
+      this.$store.commit('addToCart', product)
+    },
+    removeFromCart (product) {
+      this.$store.commit('removeFromCart', product)
     }
   },
 
@@ -25,7 +33,7 @@ export default {
   },
 
   computed: {
-    ...mapState(['candies', 'candiesMap']),
+    ...mapState(['products', 'productsMap']),
     cart () {
       return this.$store.state.cart || []
     }
@@ -39,7 +47,7 @@ export default {
   padding-bottom: 0.6em;
 }
 
-.cart {
+.nav .cart {
   position: absolute;
   left: 50%;
   top: 100%;

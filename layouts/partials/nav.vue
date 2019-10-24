@@ -13,15 +13,28 @@ header.header
         nuxt-link.nav__link(to="/contact") Contact
       li.cart-wrapper
         span.icon.i-add-to-cart.cart__icon
-        cart
+        span.cart__item-count(v-if="cartItemsCount > 0") {{ cartItemsCount }}
+        cart(:is-nav-bar="isNavBar")
 
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import Cart from '@/components/cart'
 
 export default {
-  components: { Cart }
+  data: () => ({
+    isNavBar: true
+  }),
+
+  components: { Cart },
+
+  computed: {
+    ...mapState(['cart']),
+    cartItemsCount () {
+      return this.cart.reduce((total, item) => (total += item.quantity), 0)
+    }
+  }
 }
 </script>
 
@@ -55,4 +68,16 @@ li a, li span {
 }
 
 .cart__icon {font-size: 1.5em;}
+
+.cart__item-count {
+  height: 12px;
+  width: 12px;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  top: -23px;
+  right: 57px;
+  font-size: 12px;
+}
+
 </style>

@@ -1,9 +1,9 @@
 
-import candies from './static/candies.json'
+import products from './static/products.json'
 
 let dynamicRoutes = () => {
   return new Promise(resolve => {
-    resolve(candies.map(candy => `product/${candy.id}`))
+    resolve(products.map(product => `product/${product.slug}`))
   })
 }
 
