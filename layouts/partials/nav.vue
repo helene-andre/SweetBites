@@ -1,19 +1,20 @@
 <template lang="pug">
-header.header
-  nuxt-link.logo.title(to="/") CandyBar
+header.nav-wrapper
+  nuxt-link.title(to="/") CandyBar
+  .spacer
   nav
     ul.nav
-      li
-        nuxt-link.nav__link(to="/") Home
-      li
-        nuxt-link.nav__link(to="/about") About
-      li
-        nuxt-link.nav__link(to="/boutique") Boutique
-      li
-        nuxt-link.nav__link(to="/contact") Contact
+      li.nav__link
+        nuxt-link(to="/") Home
+      li.nav__link
+        nuxt-link(to="/about") About
+      li.nav__link
+        nuxt-link(to="/boutique") Boutique
+      li.nav__link
+        nuxt-link(to="/contact") Contact
       li.cart-wrapper
-        span.icon.i-add-to-cart.cart__icon
         span.cart__item-count(v-if="cartItemsCount > 0") {{ cartItemsCount }}
+        span.icon.i-add-to-cart.cart__icon
         cart(:is-nav-bar="isNavBar")
 
 </template>
@@ -39,45 +40,39 @@ export default {
 </script>
 
 <style lang="scss">
-header.header {
-  display: grid;
-  grid-template-columns: repeat(2,auto);
-  border-bottom: 1px solid rgba(0,0,0,0.1);
+.nav-wrapper {
+  display: flex;
+  & .title {font-size: 3em;}
 }
 
-.logo.title {font-size: 1.8em;}
+.nav {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-end;
 
-.logo, li a, .nav > li {
-  padding: 1em 2em;
-  display: block;
-  text-transform: uppercase;
-  text-decoration: none;
-  font-weight: bold;
-  color: #000;
-  font-size: .9em;
-}
+  &__link {
+    font-family: "Indie Flower";
+    font-size: 1.3em;
+    padding: 10px;
+    text-transform: uppercase;
+    transition: 0.3s ease-in-out;
+    &:hover {color:#f68f9e;}
+  }
 
-nav {justify-self: right;}
-ul {list-style-type: none;}
-.nav > li {display: inline;}
+  & .cart-wrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 20px 10px 10px;
 
-li a, li span {
-  font-family: 'Indie Flower';
-  padding: 1em 2em;
-  display: inline-block;
-}
+    & .cart__item-count {
+      font-size: 10px;
+      text-align: center;
+      padding-right: 3px;
+    }
 
-.cart__icon {font-size: 1.5em;}
-
-.cart__item-count {
-  height: 12px;
-  width: 12px;
-  padding: 0;
-  margin: 0;
-  position: relative;
-  top: -23px;
-  right: 57px;
-  font-size: 12px;
+    & .cart__icon {font-size: 1.5em;}
+  }
 }
 
 </style>
