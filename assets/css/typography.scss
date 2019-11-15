@@ -7,7 +7,6 @@
     url("fonts/candybar.svg#candybar") format("svg");
   font-weight: normal;
   font-style: normal;
-
 }
 
 [data-icon]:before {
@@ -39,3 +38,6 @@
 .i-cancel:before {content: "\63";}
 .i-like:before {content: "\64";}
 .i-settings:before {content: "\65";}
+.i-add:before {content: "\66";}
+.i-remove:before {content: "\67";}
+.i-delete:before {content: "\68";}

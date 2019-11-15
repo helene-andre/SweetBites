@@ -1,6 +1,6 @@
 <template lang="pug">
 header.nav-wrapper
-  nuxt-link.title(to="/") CandyBar
+  nuxt-link.title(to="/") Sweet Bites
   .spacer
   nav
     ul.nav
@@ -42,7 +42,12 @@ export default {
 <style lang="scss">
 .nav-wrapper {
   display: flex;
-  & .title {font-size: 3em;}
+  height: 10vh;
+  & .title {
+    font-size: 2em;
+    padding: 10px 20px;
+    text-transform: uppercase;
+  }
 }
 
 .nav {
@@ -52,7 +57,7 @@ export default {
   align-items: flex-end;
 
   &__link {
-    font-family: "Indie Flower";
+    font-family: "Indie Flower", Arial, Helvetica, sans-serif;
     font-size: 1.3em;
     padding: 10px;
     text-transform: uppercase;

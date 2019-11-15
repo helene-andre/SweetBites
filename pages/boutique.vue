@@ -61,10 +61,6 @@ export default {
     transition: 0.3s ease-in-out;
 
     &:hover {opacity: 0.6;}
-    &:hover &__name {
-      opacity: 1;
-      background-color: rgba(255, 255, 255, 0.6);
-    }
   }
 
   &__picture {
@@ -88,6 +84,12 @@ export default {
     text-align: center;
     opacity: 0;
     transition: 0.3s ease-in-out;
+  }
+
+  &:hover &__name {
+    z-index: 10;
+    opacity: 1;
+    background-color: rgba(255, 255, 255, 0.6);
   }
 
   &__add-to-cart {
