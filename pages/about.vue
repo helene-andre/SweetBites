@@ -1,6 +1,6 @@
 <template lang="pug">
 section
-  .about__picture
+  .about__picture.picture-wrapper
       img.picture(src="~/assets/images/about-background.jpg")
   .container
     h1 About

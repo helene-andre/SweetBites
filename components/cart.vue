@@ -8,9 +8,11 @@
       span
         span.cart__item-remove(@click="removeFromCart(item)" title="remove") #[strong -]
         span.cart__item-add(@click="addToCart(item)" title="add") #[strong +]
-      span x {{ item.price }} $
-      span x {{ item.price*item.quantity }} $
-    span Total {{ cartItemsCount }}
+      span x ${{ item.price }}
+      span
+        | = ${{ item.price*item.quantity }}
+    span Total {{ cartItemsCount }} items
+    div Total ${{ grandTotal }}
   p(v-else) There's nothing in your cart yet.
 
   nuxt-link.nav__link(v-if="isNavBar" to="/cart")
@@ -28,6 +30,7 @@ export default {
 
   mounted () {
     this.$store.commit('initCart')
+    this.$store.commit('calculateTotal')
   },
 
   methods: {
@@ -35,10 +38,12 @@ export default {
 
     addToCart (product) {
       this.$store.commit('addToCart', product)
+      this.$store.commit('calculateTotal')
     },
 
     removeFromCart (product) {
       this.$store.commit('removeFromCart', product)
+      this.$store.commit('calculateTotal')
     }
   },
 
@@ -49,6 +54,9 @@ export default {
     },
     cartItemsCount () {
       return this.cart.reduce((total, item) => (total += item.quantity), 0)
+    },
+    grandTotal () {
+      return this.$store.state.total
     }
   }
 }
@@ -98,9 +106,9 @@ export default {
   }
 }
 .cart-wrapper:hover .cart {
-  z-index: 1;
   opacity: 1;
   transform: translate(0);
+  z-index: 20;
 }
 
 .cart-wrapper:hover .cart:before,
@@ -121,4 +129,16 @@ export default {
   margin-bottom: -1px;
 }
 
+.cart__item-remove, .cart__item-add {
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 0 5px 0 5px;
+  border: 1px solid black;
+  border-radius: 12px;
+}
+
+.cart__item-add {
+  padding-left: 4px;
+  padding-right: 3px;
+}
 </style>

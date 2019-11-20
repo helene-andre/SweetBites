@@ -1,8 +1,8 @@
 
 import products from './static/products.json'
 
-let dynamicRoutes = () => {
-  return new Promise(resolve => {
+const dynamicRoutes = () => {
+  return new Promise((resolve) => {
     resolve(products.map(product => `product/${product.slug}`))
   })
 }
@@ -64,7 +64,7 @@ export default {
   ** Build configuration
   */
   build: {
-    publicPath: 'http://localhost/_helene/cup-or-mug/dist/',
+    publicPath: 'http://localhost/_helene/sweetbites/dist/',
     /*
     ** You can extend webpack config here
     */

@@ -1,22 +1,22 @@
 <template lang="pug">
 header
-  .nav-wrapper
-    nuxt-link.title(to="/") Sweet Bites
+  .nav
+    .nav__title
+      nuxt-link(to="/") Sweet Bites
     .spacer
-    nav
-      ul.nav
-        li.nav__link
-          nuxt-link(to="/") Home
-        li.nav__link
-          nuxt-link(to="/about") About
-        li.nav__link
-          nuxt-link(to="/boutique") Boutique
-        li.nav__link
-          nuxt-link(to="/contact") Contact
-        li.cart-wrapper
-          span.cart__item-count(v-if="cartItemsCount > 0") {{ cartItemsCount }}
-          span.icon.i-add-to-cart.cart__icon
-          cart(:is-nav-bar="isNavBar")
+    ul.nav__menu
+      li.nav__menu-item
+        nuxt-link(to="/") Home
+      li.nav__menu-item
+        nuxt-link(to="/about") About
+      li.nav__menu-item
+        nuxt-link(to="/boutique") Boutique
+      li.nav__menu-item
+        nuxt-link(to="/contact") Contact
+      li.nav__menu-item.cart-wrapper
+        span.cart__item-count(v-if="cartItemsCount > 0") {{ cartItemsCount }}
+        span.icon.i-add-to-cart.cart__icon
+        cart(:is-nav-bar="isNavBar")
 
 </template>
 
@@ -41,51 +41,66 @@ export default {
 </script>
 
 <style lang="scss">
-.nav-wrapper {
+.nav {
+  height: 10vh;
   width: 100%;
-  height: 15%;
   position: fixed;
   top: 0;
   left: 0;
   display: flex;
-  height: 10vh;
-  & .title {
+  align-items: baseline;
+  background-color: rgba(255, 255, 255, 0.9);
+  font-family: "Indie Flower", Arial, Helvetica, sans-serif;
+  z-index: 100;
+
+  &__title {
+    height: 100%;
     font-size: 2em;
-    font-family: "Indie Flower", Arial, Helvetica, sans-serif;
     color: #f37285;
-    padding: 10px 20px;
+    padding: 20px 0 0 20px;
     text-transform: uppercase;
   }
-}
 
-.nav {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: flex-end;
+  &__menu {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 
-  &__link {
-    font-family: "Indie Flower", Arial, Helvetica, sans-serif;
+  &__menu-item {
     font-size: 1.3em;
-    padding: 10px;
+    padding: 20px 20px 0px 0px;
     text-transform: uppercase;
     transition: 0.3s ease-in-out;
     &:hover {color:#f68f9e;}
   }
+}
 
-  & .cart-wrapper {
-    display: flex;
-    flex-direction: column;
-    padding: 10px 20px 10px 10px;
-
-    & .cart__item-count {
-      font-size: 10px;
-      text-align: center;
-      padding-right: 3px;
+// =========================== Media queries ============================ //
+@media screen and (max-width: 650px) {
+  .nav {
+    display: inline-block;
+    &__title {
+      font-size: 1.3em;
+      height: 40%;
+      padding: 5px 0 0 20px;
     }
-
-    & .cart__icon {font-size: 1.5em;}
+    &__menu {
+      height: 40%;
+    }
+    &__menu-item {
+      font-size: 1em;
+      padding: 6px 0px 0px 20px;
+    }
+  }
+  .nav .cart {
+    right: -13px;
+    top: 139%;
   }
 }
 
+@media screen and (max-width: 450px) {
+  .nav__menu-item {font-size: 14px;}
+}
 </style>

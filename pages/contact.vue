@@ -32,7 +32,7 @@
     v-checkbox(
       v-model="checkbox"
       :rules="[v => !!v || 'You must check to continue!']"
-      label="Are you a robot?"
+      label="Are you a human?"
       required)
 
     v-btn(
@@ -93,6 +93,7 @@ export default {
   background-size: 100%;
   background-position: center;
   height: 90vh;
+  margin-top: 10vh;
 
   h1 {
     text-align: center;
@@ -107,6 +108,32 @@ export default {
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 40px;
+  }
+}
+
+// =========================== Media queries ============================ //
+@media screen and (max-width: 650px) {
+  .contact h1 {font-size: 1.5em;}
+  .contact__form {
+    height: 70%;
+    width: 60%;
+    padding: 10px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .contact h1 {font-size: 1.3em;}
+  .contact__form {
+    height: 80%;
+    width: 60%;
+    padding: 10px;
+  }
+}
+
+@media screen and (max-height: 570px) {
+  .contact__form {
+    height: 90%;
+    width: 80%;
   }
 }
 </style>

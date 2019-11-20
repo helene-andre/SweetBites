@@ -1,6 +1,6 @@
 <template lang="pug">
 section.home
-  .home__picture
+  .home__picture.picture-wrapper
     img.picture(src="~/assets/images/home-background.jpg")
   .container
     h1 Home
