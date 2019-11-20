@@ -5,7 +5,8 @@ const productsMap = products.reduce((acc, item, i) => { acc[item.slug] = i; retu
 export const state = () => ({
   products,
   productsMap,
-  cart: []
+  cart: [],
+  total: 0
 })
 
 export const mutations = {
@@ -44,5 +45,12 @@ export const mutations = {
     sessionStorageCart.push(product.slug)
 
     sessionStorage.cart = JSON.stringify(sessionStorageCart)
+  },
+
+  calculateTotal: (state) => {
+    state.total = 0
+    state.cart.forEach(function (item) {
+      state.total += (item.quantity * item.price)
+    })
   }
 }
