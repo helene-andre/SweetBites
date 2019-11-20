@@ -1,21 +1,22 @@
 <template lang="pug">
-header.nav-wrapper
-  nuxt-link.title(to="/") Sweet Bites
-  .spacer
-  nav
-    ul.nav
-      li.nav__link
-        nuxt-link(to="/") Home
-      li.nav__link
-        nuxt-link(to="/about") About
-      li.nav__link
-        nuxt-link(to="/boutique") Boutique
-      li.nav__link
-        nuxt-link(to="/contact") Contact
-      li.cart-wrapper
-        span.cart__item-count(v-if="cartItemsCount > 0") {{ cartItemsCount }}
-        span.icon.i-add-to-cart.cart__icon
-        cart(:is-nav-bar="isNavBar")
+header
+  .nav-wrapper
+    nuxt-link.title(to="/") Sweet Bites
+    .spacer
+    nav
+      ul.nav
+        li.nav__link
+          nuxt-link(to="/") Home
+        li.nav__link
+          nuxt-link(to="/about") About
+        li.nav__link
+          nuxt-link(to="/boutique") Boutique
+        li.nav__link
+          nuxt-link(to="/contact") Contact
+        li.cart-wrapper
+          span.cart__item-count(v-if="cartItemsCount > 0") {{ cartItemsCount }}
+          span.icon.i-add-to-cart.cart__icon
+          cart(:is-nav-bar="isNavBar")
 
 </template>
 
@@ -41,10 +42,17 @@ export default {
 
 <style lang="scss">
 .nav-wrapper {
+  width: 100%;
+  height: 15%;
+  position: fixed;
+  top: 0;
+  left: 0;
   display: flex;
   height: 10vh;
   & .title {
     font-size: 2em;
+    font-family: "Indie Flower", Arial, Helvetica, sans-serif;
+    color: #f37285;
     padding: 10px 20px;
     text-transform: uppercase;
   }
