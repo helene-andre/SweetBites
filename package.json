@@ -21,6 +21,7 @@
     "sass": "^1.23.0",
     "sass-loader": "^8.0.0",
     "vue-meta": "^2.3.1",
+    "vueperslides": "^1.21.0",
     "vuetify": "^2.1.5"
   },
   "devDependencies": {

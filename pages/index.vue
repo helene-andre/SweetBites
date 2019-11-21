@@ -1,7 +1,9 @@
 <template lang="pug">
 section.home
   .home__picture.picture-wrapper
-    img.picture(src="~/assets/images/home-background.jpg")
+    vueper-slides(fixed-height="73vh" autoplay)
+      vueper-slide(v-for="(slide, i) in slides" :key="i" :title="slide.title" :image="getImages(slide.image)")
+
   .container
     h1 Home
     p.subheading Voluptua sit vero sadipscing tempor sed ipsum et vero magna labore, sit et aliquyam eos est et ipsum, diam labore ut lorem ipsum ut sed est ea diam, nonumy invidunt.
@@ -16,7 +18,11 @@ section.home
 </template>
 
 <script>
+import { VueperSlides, VueperSlide } from 'vueperslides'
+import 'vueperslides/dist/vueperslides.css'
+
 export default {
+  components: { VueperSlides, VueperSlide },
   head () {
     return {
       title: 'Home',
@@ -24,6 +30,21 @@ export default {
         { name: 'description, home', content: 'This is home' }
       ]
     }
+  },
+  data: () => ({
+    slides: [
+      { image: 'home-background.jpg' },
+      { image: 'home-background-1.jpg' },
+      { image: 'home-background-2.jpg' },
+      { image: 'home-background-3.jpg' },
+      { image: 'home-background-4.jpg' },
+      { image: 'home-background-5.jpg' }
+    ]
+  }),
+  methods: {
+    getImages (name) {
+      return require(`../assets/images/${name}`)
+    },
   }
 }
 </script>
