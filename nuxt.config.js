@@ -9,7 +9,7 @@ const dynamicRoutes = () => {
 
 const routerBase = process.env.DEPLOY_ENV === 'GH_PAGES' ? {
   router: {
-    base: '/SweetBites/dist/'
+    base: '/SweetBites/'
   }
 } : {}
 
@@ -77,6 +77,11 @@ export default {
     */
     extend (config, ctx) {
     }
+  },
+  outputDir: 'docs',
+  publicPath: process.env.NODE_ENV === 'production' ? '/SweetBites' : '/',
+  devServer: {
+    proxy: 'http://SweetBites.test'
   },
   generate: {
     routes: dynamicRoutes
