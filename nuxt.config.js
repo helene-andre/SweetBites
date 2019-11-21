@@ -9,7 +9,7 @@ const dynamicRoutes = () => {
 
 const routerBase = process.env.DEPLOY_ENV === 'GH_PAGES' ? {
   router: {
-    base: '/SweetBites/'
+    base: '/SweetBites/dist/'
   }
 } : {}
 
