@@ -48,6 +48,7 @@ export default {
   top: 0;
   left: 0;
   display: flex;
+  border-bottom: 1px solid #f5f5f5;
   align-items: baseline;
   background-color: rgba(255, 255, 255, 0.9);
   font-family: "Indie Flower", Arial, Helvetica, sans-serif;

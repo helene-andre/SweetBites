@@ -141,4 +141,13 @@ export default {
   padding-left: 4px;
   padding-right: 3px;
 }
+
+// =========================== Media queries ============================ //
+@media screen and (max-width: 650px) {
+  .nav .cart {
+    right: -15px;
+  }
+}
+// ====================================================================== //
+
 </style>
