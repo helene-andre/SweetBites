@@ -41,6 +41,50 @@ export default {
 </script>
 
 <style lang="scss">
+@font-face {
+  font-family: "candybar";
+  src:url("/assets/css/fonts/candybar.eot");
+  src:url("/assets/css/fonts/candybar.eot?#iefix") format("embedded-opentype"),
+    url("/assets/css/fonts/candybar.woff") format("woff"),
+    url("/assets/css/fonts/candybar.ttf") format("truetype"),
+    url("/assets/css/fonts/candybar.svg#candybar") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+[data-icon]:before {
+  font-family: "candybar" !important;
+  content: attr(data-icon);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="i-"]:before,
+[class*=" i-"]:before {
+  font-family: "candybar" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.i-remove-from-cart:before {content: "\61";}
+.i-add-to-cart:before {content: "\62";}
+.i-cancel:before {content: "\63";}
+.i-like:before {content: "\64";}
+.i-settings:before {content: "\65";}
+.i-add:before {content: "\66";}
+.i-remove:before {content: "\67";}
+.i-delete:before {content: "\68";}
+
 .nav {
   height: 10vh;
   width: 100%;
