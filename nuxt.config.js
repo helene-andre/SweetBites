@@ -14,9 +14,6 @@ const routerBase = process.env.DEPLOY_ENV === 'GH_PAGES' ? {
 } : {}
 
 export default {
-  router: {
-    base: '/SweetBites/'
-  },
   mode: 'universal',
   /*
   ** Headers of the page
