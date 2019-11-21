@@ -7,7 +7,16 @@ const dynamicRoutes = () => {
   })
 }
 
+const routerBase = process.env.DEPLOY_ENV === 'GH_PAGES' ? {
+  router: {
+    base: '/SweetBites/'
+  }
+} : {}
+
 export default {
+  router: {
+    base: '/SweetBites/'
+  },
   mode: 'universal',
   /*
   ** Headers of the page
@@ -63,6 +72,7 @@ export default {
   /*
   ** Build configuration
   */
+  ...routerBase,
   build: {
     publicPath: 'http://localhost/_helene/sweetbites/dist/',
     /*
