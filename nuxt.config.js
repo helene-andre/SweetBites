@@ -70,7 +70,7 @@ export default {
   */
   ...routerBase,
   build: {
-    publicPath: 'http://localhost/_helene/sweetbites/dist/',
+    publicPath: process.env.DEPLOY_ENV === 'GH_PAGES' ? '/SweetBites/' : '/',
     /*
     ** You can extend webpack config here
     */
@@ -78,7 +78,6 @@ export default {
     }
   },
   outputDir: 'docs',
-  publicPath: process.env.NODE_ENV === 'production' ? '/SweetBites' : '/',
   devServer: {
     proxy: 'http://SweetBites.test'
   },
